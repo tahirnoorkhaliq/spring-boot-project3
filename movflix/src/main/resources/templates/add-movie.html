@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Getting Started: Handling Form Submission</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+	<link th:href="@{/styles/nav.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="flex-container">
+		<nav class="main-navigation">
+			<ul class="menu">
+				<li><a href="/index">Home</a></li>
+				<li><a href="/login">Admin</a></h3>
+				</li>
+			</ul>
+		</nav>
+		<div class="row rw-form">
+			<h2>Add New Movie</h2>
+		</div>
+		<div class="row rw-form success" th:if="${not#strings.isEmpty(movieAdded)}">
+			<h2>Movie Successfully Added</h2>
+		</div>
+		<div class="row rw-form">
+			<form action="#" th:action="@{/addMovie}" th:object="${movieDTO}" method="post">
+				<ul class="wrapper">
+					<li class="form-row">
+						<label for="movieId">Movie Id</label>
+						<input type="test" th:field="*{movieId}" id="movieId" placeholder="Movie Id">
+					</li>
+					<li class="form-row">
+						<span th:if="${#fields.hasErrors('movieId')}" th:errors="*{movieId}"></span>
+					</li>
+					<li class="form-row">
+						<label for="movieName">Movie Name</label>
+						<input type="text" th:field="*{movieName}" id="movieName" placeholder="Movie Name">
+					</li>
+					<li class="form-row">
+						<span th:if="${#fields.hasErrors('movieName')}" th:errors="*{movieName}"></span>
+					</li>
+					<li class="form-row">
+						<label for="movieCollection">Movie Collection</label>
+						<input type="number" th:field="*{movieCollection}" id="movieCollection"
+							placeholder="Movie Collection">
+					</li>
+					<li class="form-row">
+						<span th:if="${#fields.hasErrors('movieCollection')}" th:errors="*{movieCollection}"></span>
+					</li>
+					<li class="form-row">
+						<input type="submit" value="Add Novie">
+					</li>
+				</ul>
+
+			</form>
+		</div>
+		<div class="row rw-form">
+			<h2>Movies Details</h2>
+		</div>
+		<div th:if="${ not#lists.isEmpty(movieDTOs)}" class="row rw-form">
+
+			<table>
+				<tr>
+					<th>Movie Id</th>
+					<th>Movie Name</th>
+					<th>Movie Collection</th>
+					<th>Action</th>
+				</tr>
+				<tr th:each="movieDTO : ${movieDTOs}">
+					<td th:text="${movieDTO.movieId}"></td>
+					<td th:text="${movieDTO.movieName}"></td>
+					<td th:text="${movieDTO.movieCollection}"></td>
+					<td><a href="/modify">Modify</a></td>
+				</tr>
+				<table>
+		</div>
+	</div>
+</body>
+
+</html>

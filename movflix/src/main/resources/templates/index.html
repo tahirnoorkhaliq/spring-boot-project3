@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Getting Started: Handling Form Submission</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+		 <link th:href="@{/styles/nav.css}" rel="stylesheet" />
+	
+</head>
+
+<body>
+	<div class="container-fluid">
+		<nav class="main-navigation">
+			<ul class="menu">
+				<li><a href="/index">Home</a></li>
+				<li class="menu-item-has-children"><a href="#">Search</a>
+					<ul class="sub-menu">
+						<li><a href="/search/id">By Movie Id</a></li>
+						<li class="menu-item-has-children"><a href="/search/name">By Movie Name</a>
+							<!--<ul class="sub-menu">
+								<li><a href="/search/id">By Movie Id</a></li>
+								<li><a href="/search/name">By Movie Name</a></li>
+								<li><a href="/search/collection">By Movie Collections</a></li>
+							</ul>-->
+						</li>
+						<li><a href="/search/collection">By Movie Collections</a></li>
+					</ul>
+				</li>
+				<li><a href="/login">Admin</a></h3>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</body>
+</html>

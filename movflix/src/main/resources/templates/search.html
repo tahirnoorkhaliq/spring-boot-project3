@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Movflex</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+	 <link th:href="@{/styles/nav.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="container-fluid">
+		<nav class="main-navigation">
+			<ul class="menu">
+				<li><a href="/index">Home</a></li>
+				<li class="menu-item-has-children"><a href="#">Search</a>
+					<ul class="sub-menu">
+						<li><a href="/search/id">By Movie Id</a></li>
+						<li class="menu-item-has-children"><a href="/search/name">By Movie Name</a>
+							<!--<ul class="sub-menu">
+								<li><a href="/search/id">By Movie Id</a></li>
+								<li><a href="/search/name">By Movie Name</a></li>
+								<li><a href="/search/collection">By Movie Collections</a></li>
+							</ul>-->
+						</li>
+						<li><a href="/search/collection">By Movie Collections</a></li>
+					</ul>
+				</li>
+				<li><a href="/login">Admin</a></h3>
+				</li>
+			</ul>
+		</nav>
+		<div class="row rw-form" th:if="${not#strings.isEmpty(movieId)}">
+			<form action="#" th:action="@{/search-movie}" th:object="${movieDTO}" method="get">
+				<label for="movieId">Enter Movie Id</label>
+				<input type="text" th:field="*{movieId}" id="movieId" placeholder="Movie Id">
+				<span th:if="${#fields.hasErrors('movieId')}" th:errors="*{movieId}"></span>
+				<input type="submit" value="Search">
+			</form>
+		</div>
+		<div class="row rw-form" th:if="${not#strings.isEmpty(movieName)}">
+			<form action="#" th:action="@{/search-movie}" th:object="${movieDTO}" method="get">
+				<label for="movieName">Enter Movie Name</label>
+				<input type="text" th:field="*{movieName}" id="movieName" placeholder="Movie Name">
+				<span th:if="${#fields.hasErrors('movieName')}" th:errors="*{movieName}"></span>
+				<input type="submit" value="Search">
+			</form>
+		</div>
+		<div class="row rw-form" th:if="${not#strings.isEmpty(movieCollection)}">
+			<form action="#" th:action="@{/search-movie}" th:object="${movieDTO}" method="get">
+				<label for="movieCollection">Enter Movie Collection</label>
+				<input type="text" th:field="*{movieCollection}" id="movieCollection" placeholder="Movie Collection">
+				<span th:if="${#fields.hasErrors('movieCollection')}" th:errors="*{movieCollection}"></span>
+				<input type="submit" value="Search">
+			</form>
+		</div>
+		<div th:if="${ not #lists.isEmpty(movieDTOs)}" class="row rw-form">
+			<table>
+				<tr>
+					<th>Movie Id</th>
+					<th>Movie Name</th>
+					<th>Movie Collection</th>
+				</tr>
+				<tr th:each="movieDTO : ${movieDTOs}">
+					<td th:text="${movieDTO} ? ${movieDTO.movieId} : 'No Record Found'"></td>
+					<td th:text="${movieDTO} ? ${movieDTO.movieName} : ''"></td>
+					<td th:text="${movieDTO} ? ${movieDTO.movieCollection} : ''"></td>	
+				</tr>
+			<table>
+		</div>
+	</div>
+</body>
+
+</html>

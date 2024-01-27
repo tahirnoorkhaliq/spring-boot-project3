@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Movflex</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+	<link th:href="@{/styles/nav.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="container-fluid">
+		<nav class="main-navigation">
+			<ul class="menu">
+				<li><a href="/index">Home</a></li>
+				<li class="menu-item-has-children"><a href="#">Search</a>
+					<ul class="sub-menu">
+						<li><a href="/search/id">By Movie Id</a></li>
+						<li class="menu-item-has-children"><a href="/search/name">By Movie Name</a>
+							<!--<ul class="sub-menu">
+								<li><a href="/search/id">By Movie Id</a></li>
+								<li><a href="/search/name">By Movie Name</a></li>
+								<li><a href="/search/collection">By Movie Collections</a></li>
+							</ul>-->
+						</li>
+						<li><a href="/search/collection">By Movie Collections</a></li>
+					</ul>
+				</li>
+				<li><a href="/login">Admin</a></h3>
+				</li>
+			</ul>
+		</nav>
+		<div class="row rw-form">
+			<form action="#" th:action="@{/signin}" th:object="${user}" method="post">
+				<ul class="wrapper">
+					<li class="form-row">
+						<label for="email">Email</label>
+						<input type="text" th:field="*{email}" id="email" placeholder="Email">
+					</li>
+					<li class="form-row">
+						<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+					</li>
+					<li class="form-row">
+						<label for="password">Password</label>
+						<input type="password" th:field="*{password}" id="password" placeholder="Password">
+					</li>
+					<li class="form-row"><span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+					</li>
+					<li class="form-row">
+						<input type="submit" value="Signin">
+					</li>
+				</ul>
+
+
+
+			</form>
+		</div>
+
+	</div>
+</body>
+
+</html>
