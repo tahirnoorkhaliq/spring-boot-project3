@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Movflex</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+	<link th:href="@{/styles/nav.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="header">
+		<a href="#default" class="logo">Best Choice Car</a>
+		<div class="header-right">
+			<a class="active" href="/index">Home</a>			
+		</div>
+	</div>
+	<div class="container-fluid">
+		<nav class="main-navigation">
+			<ul class="menu">				
+				<li class="menu-item-has-children"><a href="#">Search</a>
+					<ul class="sub-menu">
+						<li><a href="/search/carBrand">Search Car By Brand</a></li>
+						<li><a href="/search/carPrice">Search Car By Price</a>
+							
+						</li>
+					</ul>
+				</li>				
+			</ul>
+		</nav>	
+		<div class="row rw-form">
+			<p>Congratulations! You have Successfully booked Below Car</p>
+		</div>
+		<div th:if="${ not #lists.isEmpty(carDTO)}" class="row rw-form">
+					
+			<table>
+				<tr>					
+					<th>Brand</th>
+					<th>Model</th>
+					<th>Year</th>
+					<th>KMs Drived</th>
+					<th>Price</th>
+					<th>Fuel</th>
+				</tr>
+				<tr >					
+					<td th:text="${carDTO.brand}"></td>
+					<td th:text="${carDTO.model}"></td>
+					<td th:text="${carDTO.year}"></td>
+					<td th:text="${carDTO.kmsDriven}"></td>
+					<td th:text="${carDTO.price}"></td>
+					<td th:text="${carDTO.fuel}"></td>
+				</tr>				
+				<table>			
+		
+		</div>
+	</div>
+</body>
+
+</html>

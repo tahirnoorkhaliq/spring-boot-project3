@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Movflex</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+	<link th:href="@{/styles/nav.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="header">
+		<a href="#default" class="logo">Best Choice Car</a>
+		<div class="header-right">
+			<a class="active" href="/index">Home</a>			
+		</div>
+	</div>
+	<div class="container-fluid">
+		<nav class="main-navigation">
+			<ul class="menu">				
+				<li class="menu-item-has-children"><a href="#">Search</a>
+					<ul class="sub-menu">
+						<li><a href="/search/carBrand">Search Car By Brand</a></li>
+						<li><a href="/search/carPrice">Search Car By Price</a>
+							
+						</li>
+					</ul>
+				</li>				
+			</ul>
+		</nav>
+		<div class="row rw-form" th:if="${not#strings.isEmpty(carBrand)}">
+			<form action="#" th:action="@{/search-car}" th:object="${carDTO}" method="get">
+				<label for="brand">Search Car By Brand</label>
+				<select class="form-control" id="brand" name="brand">
+					<option value="0">select option</option>
+					<option th:each="option : ${brands}" th:value="${option}" th:text="${option}"></option>
+				</select>				
+				<input type="submit" value="Search">
+				<input type="button" value="Back">
+			</form>
+		</div>
+		<div class="row rw-form" th:if="${not#strings.isEmpty(carPrice)}">
+			<form action="#" th:action="@{/search-car}" th:object="${carDTO}" method="get">
+				<label for="price">Search Car By Price</label>
+				<select class="form-control" id="price" name="price">
+					<option value="0">select option</option>
+					<option th:each="option : ${prices}" th:value="${option}" th:text="'Up to'+ ${option}"></option>
+				</select>				
+				<input type="submit" value="Search">
+				<input type="button" value="Back">
+			</form>
+		</div>
+		
+		<div th:if="${ not #lists.isEmpty(carDTOs)}" class="row rw-form">
+		<form action="#" th:action="@{/book-car}" th:object="${carDTO}" method="post">
+			<table>
+				<tr>
+					<th>Select</th>
+					<th>Brand</th>
+					<th>Model</th>
+					<th>Year</th>
+					<th>KMs Drived</th>
+					<th>Price</th>
+					<th>Fuel</th>
+				</tr>
+				<tr th:each="cDTO : ${carDTOs}">
+					<td> <input type="radio" th:field="*{carId}" th:value="${cDTO.carId}" class="custom-control-input"/></td>
+					<td th:text="${cDTO} ? ${cDTO.brand} : 'No Record Found'"></td>
+					<td th:text="${cDTO} ? ${cDTO.model} : ''"></td>
+					<td th:text="${cDTO} ? ${cDTO.year} : ''"></td>
+					<td th:text="${cDTO} ? ${cDTO.kmsDriven} : ''"></td>
+					<td th:text="${cDTO} ? ${cDTO.price} : ''"></td>
+					<td th:text="${cDTO} ? ${cDTO.fuel} : ''"></td>
+				</tr>
+				<tr><td colspan="7"><input type="submit" value="Book Car"></td></tr>
+				<table>
+					
+		 </form>
+		</div>
+	</div>
+</body>
+
+</html>

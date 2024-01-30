@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Best Choice Car</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+	<link th:href="@{/styles/nav.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="flex-container">
+		<nav class="main-navigation">
+			<ul class="menu">
+				<li><a href="/index">Home</a></li>
+				<li><a href="/login">Admin</a></h3>
+				</li>
+			</ul>
+		</nav>
+		<div class="row rw-form">
+			<h2>Add New Car</h2>
+		</div>
+		<div class="row rw-form success" th:if="${not#strings.isEmpty(carAdded)}">
+			<h2>Car Successfully Added</h2>
+		</div>
+		<div class="row rw-form">
+			<form action="#" th:action="@{/addCar}" th:object="${carDTO}" method="post">
+				<ul class="wrapper">
+					<li class="form-row">
+						<label for="brand">Car Brand</label>
+						<input type="test" th:field="*{brand}" id="brand" placeholder="Car Brand ">
+					</li>
+					<li class="form-row">
+						<span th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></span>
+					</li>
+					<li class="form-row">
+						<label for="model">Car Model</label>
+						<input type="test" th:field="*{model}" id="model" placeholder="Car Model">
+					</li>
+					<li class="form-row">
+						<span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span>
+					</li>
+					<li class="form-row">
+						<label for="year">YOM</label>
+						<input type="test" th:field="*{year}" id="Year" placeholder="year">
+					</li>
+					<li class="form-row">
+						<span th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></span>
+					</li>
+					<li class="form-row">
+						<label for="kmsDriven">kms Driven</label>
+						<input type="test" th:field="*{kmsDriven}" id="kmsDriven" placeholder="KMs Driven">
+					</li>
+					<li class="form-row">
+						<span th:if="${#fields.hasErrors('kmsDriven')}" th:errors="*{kmsDriven}"></span>
+					</li>
+					<li class="form-row">
+						<label for="price">Price</label>
+						<input type="test" th:field="*{price}" id="price" placeholder="Price">
+					</li>
+					<li class="form-row">
+						<span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+					</li>
+					<li class="form-row">
+						<label for="fuel">Fuel</label>
+						<input type="test" th:field="*{fuel}" id="fuel" placeholder="Fuel">
+					</li>
+					<li class="form-row">
+						<span th:if="${#fields.hasErrors('fuel')}" th:errors="*{fuel}"></span>
+					</li>
+					<li class="form-row">
+						<input type="submit" value="Add Car">
+					</li>
+				</ul>
+
+			</form>
+		</div>
+		<div class="row rw-form">
+			<h2>Car Details</h2>
+		</div>
+		<div th:if="${ not#lists.isEmpty(carDTOs)}" class="row rw-form">		
+			<table>
+				<tr>
+					<th>Brand</th>
+					<th>Model</th>
+					<th>Year</th>
+					<th>KMs Drived</th>
+					<th>Price</th>
+					<th>Fuel</th>
+					<th>Action</th>
+				</tr>
+				<tr th:each="carDTO : ${carDTOs}">
+					<td th:text="${carDTO} ? ${carDTO.brand} : 'No Record Found'"></td>
+					<td th:text="${carDTO} ? ${carDTO.model} : ''"></td>
+					<td th:text="${carDTO} ? ${carDTO.year} : ''"></td>
+					<td th:text="${carDTO} ? ${carDTO.kmsDriven} : ''"></td>
+					<td th:text="${carDTO} ? ${carDTO.price} : ''"></td>
+					<td th:text="${carDTO} ? ${carDTO.fuel} : ''"></td>
+					<td><a href="/modify">Modify</a></td>
+				</tr>
+			yyyi7i9<table>
+		</div>
+	</div>
+</body>
+
+</html>
