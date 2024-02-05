@@ -12,5 +12,5 @@ public interface MovieRepository extends CrudRepository<MovieDetails, String> {
 	
 	
 	List<MovieDetails> findByMovieName(String movieName);
-	List<MovieDetails> findByMovieCollection(long movieCollection);
+	List<MovieDetails> findByMovieCollection(Long movieCollection);
 }

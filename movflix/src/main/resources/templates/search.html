@@ -31,7 +31,7 @@
 				</li>
 			</ul>
 		</nav>
-		<div class="row rw-form" th:if="${not#strings.isEmpty(movieId)}">
+		<div class="row rw-form" th:if="${not#strings.isEmpty(id)}">
 			<form action="#" th:action="@{/search-movie}" th:object="${movieDTO}" method="get">
 				<label for="movieId">Enter Movie Id</label>
 				<input type="text" th:field="*{movieId}" id="movieId" placeholder="Movie Id">
@@ -39,7 +39,7 @@
 				<input type="submit" value="Search">
 			</form>
 		</div>
-		<div class="row rw-form" th:if="${not#strings.isEmpty(movieName)}">
+		<div class="row rw-form" th:if="${not#strings.isEmpty(name)}">
 			<form action="#" th:action="@{/search-movie}" th:object="${movieDTO}" method="get">
 				<label for="movieName">Enter Movie Name</label>
 				<input type="text" th:field="*{movieName}" id="movieName" placeholder="Movie Name">
@@ -47,13 +47,16 @@
 				<input type="submit" value="Search">
 			</form>
 		</div>
-		<div class="row rw-form" th:if="${not#strings.isEmpty(movieCollection)}">
+		<div class="row rw-form" th:if="${not#strings.isEmpty(collection)}">
 			<form action="#" th:action="@{/search-movie}" th:object="${movieDTO}" method="get">
 				<label for="movieCollection">Enter Movie Collection</label>
 				<input type="text" th:field="*{movieCollection}" id="movieCollection" placeholder="Movie Collection">
 				<span th:if="${#fields.hasErrors('movieCollection')}" th:errors="*{movieCollection}"></span>
 				<input type="submit" value="Search">
 			</form>
+		</div>
+		<div class="row rw-form error" th:if="${#lists.isEmpty(movieDTOs)}">
+			<h2>Please enter correct value in Search Box, No record Found</h2>
 		</div>
 		<div th:if="${ not #lists.isEmpty(movieDTOs)}" class="row rw-form">
 			<table>

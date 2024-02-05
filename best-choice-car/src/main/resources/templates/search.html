@@ -70,7 +70,7 @@
 					<td th:text="${cDTO} ? ${cDTO.model} : ''"></td>
 					<td th:text="${cDTO} ? ${cDTO.year} : ''"></td>
 					<td th:text="${cDTO} ? ${cDTO.kmsDriven} : ''"></td>
-					<td th:text="${cDTO} ? ${cDTO.price} : ''"></td>
+					<td th:text="${cDTO} ? 'Rs  '+ ${cDTO.price} : ''"></td>
 					<td th:text="${cDTO} ? ${cDTO.fuel} : ''"></td>
 				</tr>
 				<tr><td colspan="7"><input type="submit" value="Book Car"></td></tr>

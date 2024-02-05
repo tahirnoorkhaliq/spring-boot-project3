@@ -15,6 +15,7 @@
 			<ul class="menu">
 				<li><a href="/index">Home</a></li>
 				<li><a href="/login">Admin</a></h3>
+				<li><a href="/signout">Signout</a></h3>
 				</li>
 			</ul>
 		</nav>
@@ -29,7 +30,7 @@
 				<ul class="wrapper">
 					<li class="form-row">
 						<label for="movieId">Movie Id</label>
-						<input type="test" th:field="*{movieId}" id="movieId" placeholder="Movie Id">
+						<input type="text" th:field="*{movieId}" id="movieId" placeholder="Movie Id">
 					</li>
 					<li class="form-row">
 						<span th:if="${#fields.hasErrors('movieId')}" th:errors="*{movieId}"></span>
@@ -71,7 +72,7 @@
 				<tr th:each="movieDTO : ${movieDTOs}">
 					<td th:text="${movieDTO.movieId}"></td>
 					<td th:text="${movieDTO.movieName}"></td>
-					<td th:text="${movieDTO.movieCollection}"></td>
+					<td th:text="'Rs '+${movieDTO.movieCollection}"></td>
 					<td><a href="/modify">Modify</a></td>
 				</tr>
 				<table>

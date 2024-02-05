@@ -40,7 +40,7 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public List<MovieDTO> findbyMovieCollection(long movieCollection) {
+	public List<MovieDTO> findbyMovieCollection(Long movieCollection) {
 		return Arrays.asList(new ModelMapper().map(movieRepository.findByMovieCollection(movieCollection), MovieDTO[].class));
 	}
 

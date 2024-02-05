@@ -9,7 +9,7 @@ public interface MovieService {
  public List<MovieDTO> getAllMovies();
  public List<MovieDTO> findbyMovieId(String movieId);
  public List<MovieDTO> findbyMovieName(String movieName);
- public List<MovieDTO> findbyMovieCollection(long movieCollection);
+ public List<MovieDTO> findbyMovieCollection(Long movieCollection);
  
  
 }

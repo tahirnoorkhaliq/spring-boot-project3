@@ -22,7 +22,8 @@ public class MovieDTO implements Serializable {
 	private String movieName;
 	@NotNull(message = "Movie Collection Can't be empty")
 	@Min(1)	
-	private long movieCollection;	
+	private Long movieCollection;
+	
 
 	public String getMovieId() {
 		return movieId;
@@ -40,11 +41,11 @@ public class MovieDTO implements Serializable {
 		this.movieName = movieName;
 	}
 
-	public long getMovieCollection() {
+	public Long getMovieCollection() {
 		return movieCollection;
 	}
 
-	public void setMovieCollection(long movieCollection) {
+	public void setMovieCollection(Long movieCollection) {
 		this.movieCollection = movieCollection;
 	}
 

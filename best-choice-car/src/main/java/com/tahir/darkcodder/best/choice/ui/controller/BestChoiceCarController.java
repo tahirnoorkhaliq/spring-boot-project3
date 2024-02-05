@@ -25,46 +25,6 @@ public class BestChoiceCarController {
 	@Autowired
 	CarService carService;
 
-	@GetMapping("/login")
-	public String showSignUpForm(@ModelAttribute("user") User user) {		
-		return "sign-in";
-	}
-
-	@PostMapping("/signin")
-	public String signin(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {			
-		if (result.hasErrors()) {
-			return "sign-in";
-		} else {
-			if (user.getEmail().equalsIgnoreCase("stella@gmail.com") && user.getPassword().equalsIgnoreCase("stella")) {
-				model.addAttribute("carDTO", new CarDTO());
-				model.addAttribute("carDTOs", carService.getAllCars());
-				return "add-car";
-			}else {		
-				result.rejectValue("email","", "Invalid email");				
-				result.rejectValue("password","", "Invalid password");
-			}
-		}
-		
-		return "sign-in";
-	}
-
-	@PostMapping("/addCar")
-	public String addUser(@Valid @ModelAttribute("carDTO") CarDTO carDTO, BindingResult result, Model model) {
-		System.out.println("carDTO "+carDTO);
-		if (result.hasErrors()) {
-			return "add-car";
-		} else {
-			try {
-				carService.save(carDTO);
-				model.addAttribute("carAdded", Boolean.TRUE);
-			} catch (AlreadyInitializedException e) {
-				result.rejectValue("carBrand", "", e.getMessage());
-			}			
-		}
-		model.addAttribute("carDTOs", carService.getAllCars());
-		return "add-car";
-	}
-	
 	@PostMapping("/book-car")
 	public String bookCar(@Valid @ModelAttribute("carDTO") CarDTO carDTO, BindingResult result, Model model) {
 		System.out.println("carDTO "+carDTO);
@@ -124,5 +84,49 @@ public class BestChoiceCarController {
     public String handleException(Exception ex) {        
         return "error";
     }
+	
+	
+	/*
+
+	@GetMapping("/login")
+	public String showSignUpForm(@ModelAttribute("user") User user) {		
+		return "sign-in";
+	}
+
+	@PostMapping("/signin")
+	public String signin(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {			
+		if (result.hasErrors()) {
+			return "sign-in";
+		} else {
+			if (user.getEmail().equalsIgnoreCase("stella@gmail.com") && user.getPassword().equalsIgnoreCase("stella")) {
+				model.addAttribute("carDTO", new CarDTO());
+				model.addAttribute("carDTOs", carService.getAllCars());
+				return "add-car";
+			}else {		
+				result.rejectValue("email","", "Invalid email");				
+				result.rejectValue("password","", "Invalid password");
+			}
+		}
+		
+		return "sign-in";
+	}
+
+	@PostMapping("/addCar")
+	public String addUser(@Valid @ModelAttribute("carDTO") CarDTO carDTO, BindingResult result, Model model) {
+		System.out.println("carDTO "+carDTO);
+		if (result.hasErrors()) {
+			return "add-car";
+		} else {
+			try {
+				carService.save(carDTO);
+				model.addAttribute("carAdded", Boolean.TRUE);
+			} catch (AlreadyInitializedException e) {
+				result.rejectValue("carBrand", "", e.getMessage());
+			}			
+		}
+		model.addAttribute("carDTOs", carService.getAllCars());
+		return "add-car";
+	}
+	*/
 	
 }
